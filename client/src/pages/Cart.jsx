@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../contexts/CartContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { state, dispatch } = useContext(CartContext);
   const navigate = useNavigate();
-  const subtotal = state.items.reduce((s,i) => s + i.price * i.qty, 0);
+  const subtotal = state.items.reduce((s, i) => s + i.price * i.qty, 0);
 
   return (
     <div className="p-4">
@@ -19,14 +19,24 @@ export default function Cart() {
             </div>
             <div className="text-right">
               <div>₹{it.price * it.qty}</div>
-              <button onClick={() => dispatch({ type: 'REMOVE', payload: it.product })} className="text-red-500 text-sm">Remove</button>
+              <button
+                onClick={() => dispatch({ type: "REMOVE", payload: it.product })}
+                className="text-red-500 text-sm"
+              >
+                Remove
+              </button>
             </div>
           </div>
         ))}
       </div>
       <div className="mt-4">
         <div className="font-bold">Subtotal: ₹{subtotal}</div>
-        <button onClick={() => navigate('/checkout')} className="mt-2 bg-blue-600 text-white px-4 py-2 rounded">Checkout</button>
+        <button
+          onClick={() => navigate("/checkout")}
+          className="mt-2 bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );
